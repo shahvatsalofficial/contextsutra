@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/contextsutra/capsule.schema.json",
+  "title": "ContextSutra Capsule v1 - illustrative schema; runtime validator checks subset",
+  "type": "object",
+  "required": [
+    "schema",
+    "project",
+    "scan",
+    "sources",
+    "privacy",
+    "trust",
+    "narrative",
+    "integrity"
+  ],
+  "properties": {
+    "schema": {
+      "const": "contextsutra.capsule.v1"
+    },
+    "project": {
+      "type": "object"
+    },
+    "scan": {
+      "type": "object"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "bytes",
+          "headings",
+          "excerpts",
+          "tasks",
+          "decisions",
+          "redactions",
+          "trust"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "headings": {
+            "type": "array"
+          },
+          "excerpts": {
+            "type": "array"
+          },
+          "tasks": {
+            "type": "array"
+          },
+          "decisions": {
+            "type": "array"
+          },
+          "redactions": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "trust": {
+            "const": "untrusted-source-text"
+          }
+        }
+      }
+    },
+    "privacy": {
+      "type": "object"
+    },
+    "trust": {
+      "type": "object"
+    },
+    "narrative": {
+      "type": "string"
+    },
+    "integrity": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "digest"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

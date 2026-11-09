@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "note": "Missing evidence means untested. Copying skills to a directory is not proof that a host loads them.",
+  "hosts": [
+    {"host": "generic-markdown", "testedVersion": "n/a", "os": ["windows", "linux", "macos"], "capabilities": ["render"], "skillDirectory": null, "installStatus": "n/a", "activationStatus": "n/a (plain Markdown file)", "lastValidatedAt": "see CI", "knownLimitations": ["User pastes or attaches the file manually."], "evidenceLinks": ["documents/contextsutra/evidence/README.md"]},
+    {"host": "claude-code", "testedVersion": "untested", "os": [], "capabilities": ["skills", "render"], "skillDirectory": ".claude/skills", "installStatus": "files copied and verified by test", "activationStatus": "untested", "lastValidatedAt": null, "knownLimitations": ["No live host run has been recorded."], "evidenceLinks": []},
+    {"host": "cursor", "testedVersion": "untested", "os": [], "capabilities": ["skills", "render"], "skillDirectory": ".cursor/skills", "installStatus": "files copied and verified by test", "activationStatus": "untested", "lastValidatedAt": null, "knownLimitations": ["No live host run has been recorded."], "evidenceLinks": []},
+    {"host": "openai-codex", "testedVersion": "untested", "os": [], "capabilities": ["skills", "render"], "skillDirectory": ".agents/skills", "installStatus": "files copied and verified by test", "activationStatus": "untested", "lastValidatedAt": null, "knownLimitations": ["No live host run has been recorded."], "evidenceLinks": []},
+    {"host": "gemini-cli", "testedVersion": "untested", "os": [], "capabilities": ["skills", "render"], "skillDirectory": ".gemini/skills", "installStatus": "files copied and verified by test", "activationStatus": "untested", "lastValidatedAt": null, "knownLimitations": ["No live host run has been recorded."], "evidenceLinks": []},
+    {"host": "github-copilot", "testedVersion": "untested", "os": [], "capabilities": ["skills", "render"], "skillDirectory": ".github/skills", "installStatus": "files copied and verified by test", "activationStatus": "untested", "lastValidatedAt": null, "knownLimitations": ["No live host run has been recorded."], "evidenceLinks": []}
+  ]
+}

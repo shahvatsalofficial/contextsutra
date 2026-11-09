@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "tool": "contextsutra@0.2.0",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "scope": "Self-audit of the ContextSutra package: redaction, injection quarantine, integrity, drift, server, supply chain, skills and legal files. It audits the tool, not your repository.",
+  "limits": [
+    "Runs in-process with the code it audits, so it is a regression and integrity check, not an independent third-party attestation.",
+    "Known-answer tables are finite; they prove listed behaviours only. Regex redaction can miss secrets that look unlike the listed patterns.",
+    "Does not test live IDEs or live models; host activation stays untested (see compatibility-matrix.json). Other operating systems are covered by CI, not by this run.",
+    "Does not provide legal advice or any compliance certification."
+  ],
+  "knownAnswerCases": 26,
+  "total": 47,
+  "passed": 47,
+  "failed": 0,
+  "verdict": "PASS",
+  "categories": [
+    {
+      "category": "Redaction accuracy",
+      "passed": 6,
+      "total": 6
+    },
+    {
+      "category": "Prompt injection",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "category": "Integrity",
+      "passed": 6,
+      "total": 6
+    },
+    {
+      "category": "Freshness",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "category": "Path safety",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "category": "Review gate",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "category": "Server",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "category": "Supply chain",
+      "passed": 6,
+      "total": 6
+    },
+    {
+      "category": "Skills",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "category": "Legal",
+      "passed": 5,
+      "total": 5
+    }
+  ],
+  "checks": [
+    {
+      "category": "Redaction accuracy",
+      "id": "P1",
+      "title": "Known-answer table (21 lines)",
+      "expected": "0 wrong",
+      "observed": "0 wrong",
+      "status": "pass",
+      "evidence": "all rows matched ground truth"
+    },
+    {
+      "category": "Redaction accuracy",
+      "id": "P2",
+      "title": "Missed secrets (false negatives)",
+      "expected": "0",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Redaction accuracy",
+      "id": "P3",
+      "title": "Wrongly redacted prose (false positives)",
+      "expected": "0",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Redaction accuracy",
+      "id": "P4",
+      "title": "Multi-line private key body is dropped, text after it kept",
+      "expected": "no key body, \"After key text.\" kept",
+      "observed": "ok",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Redaction accuracy",
+      "id": "P5",
+      "title": "Secret files and private directories never enter a capsule",
+      "expected": "no marker, 1 file seen",
+      "observed": "clean, 1 file",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Redaction accuracy",
+      "id": "P6",
+      "title": "Sensitive file-name rules",
+      "expected": "all blocked",
+      "observed": "checked",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Prompt injection",
+      "id": "I1",
+      "title": "Injection-phrase table (5 lines)",
+      "expected": "0 wrong",
+      "observed": "0",
+      "status": "pass",
+      "evidence": "all rows matched"
+    },
+    {
+      "category": "Prompt injection",
+      "id": "I2",
+      "title": "Instruction-like repository line is quarantined, not rendered",
+      "expected": "absent from capsule and render; counted",
+      "observed": "absent, 1 quarantined",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Prompt injection",
+      "id": "I3",
+      "title": "Rendered context carries the untrusted-data boundary",
+      "expected": "SECURITY BOUNDARY present",
+      "observed": "present",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Integrity",
+      "id": "D1",
+      "title": "Two scans of the same tree are byte-identical",
+      "expected": "equal",
+      "observed": "equal",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Integrity",
+      "id": "D2",
+      "title": "Capsule validates",
+      "expected": "valid",
+      "observed": "valid",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Integrity",
+      "id": "D3",
+      "title": "Tampering with any field is detected",
+      "expected": "invalid",
+      "observed": "invalid",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Integrity",
+      "id": "D4",
+      "title": "Digest ignores JSON key order",
+      "expected": "equal",
+      "observed": "equal",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Integrity",
+      "id": "D5",
+      "title": "Integrity block states it is not a signature",
+      "expected": "signed:false",
+      "observed": "signed:false",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Integrity",
+      "id": "D6",
+      "title": "Malformed inputs are rejected without crashing",
+      "expected": "all invalid",
+      "observed": "all invalid",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Freshness",
+      "id": "F1",
+      "title": "Untouched tree is CURRENT",
+      "expected": "CURRENT",
+      "observed": "CURRENT",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Freshness",
+      "id": "F2",
+      "title": "Edited source is STALE",
+      "expected": "STALE",
+      "observed": "STALE",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Freshness",
+      "id": "F3",
+      "title": "Removed source is MISSING_OR_BLOCKED",
+      "expected": "MISSING_OR_BLOCKED",
+      "observed": "MISSING_OR_BLOCKED",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Freshness",
+      "id": "F4",
+      "title": "Newly added document is reported as drift",
+      "expected": "AGENTS.md listed",
+      "observed": "AGENTS.md",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Freshness",
+      "id": "F5",
+      "title": "diff reports added, removed and changed exactly",
+      "expected": "added AGENTS.md; removed TODO.md; changed README.md",
+      "observed": "added AGENTS.md; removed TODO.md; changed README.md",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Path safety",
+      "id": "X1",
+      "title": "Traversal and absolute paths are refused",
+      "expected": "all refused",
+      "observed": "checked",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Path safety",
+      "id": "X2",
+      "title": "Symlinked source is refused",
+      "expected": "blocked (or skipped where symlinks are not permitted)",
+      "observed": "skipped (symlink creation not permitted)",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Review gate",
+      "id": "G1",
+      "title": "Gate never certifies a capsule safe",
+      "expected": "HUMAN_REVIEW_REQUIRED or BLOCK",
+      "observed": "HUMAN_REVIEW_REQUIRED",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Review gate",
+      "id": "G2",
+      "title": "Residual secret in a capsule triggers BLOCK",
+      "expected": "BLOCK",
+      "observed": "BLOCK",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Review gate",
+      "id": "G3",
+      "title": "Conflicting package managers are surfaced for a human",
+      "expected": "package-manager conflict",
+      "observed": "package-manager",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Review gate",
+      "id": "G4",
+      "title": "Approval claimed only for explicit accepted status",
+      "expected": "only 0002 approved",
+      "observed": "0002-y.md",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Server",
+      "id": "V1",
+      "title": "Binds to loopback only",
+      "expected": "127.0.0.1",
+      "observed": "127.0.0.1",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Server",
+      "id": "V2",
+      "title": "Capsule needs a bearer token",
+      "expected": "401 without, 200 with",
+      "observed": "401, 200",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Server",
+      "id": "V3",
+      "title": "Non-GET methods are refused",
+      "expected": "405",
+      "observed": "405",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Server",
+      "id": "V4",
+      "title": "Foreign Host header is refused (DNS-rebinding guard)",
+      "expected": "403",
+      "observed": "403",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Server",
+      "id": "V5",
+      "title": "Short tokens are rejected at start-up",
+      "expected": "rejected",
+      "observed": "rejected",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Supply chain",
+      "id": "S1",
+      "title": "Secret scan over 106 text files (code only; docs and fixtures excluded)",
+      "expected": "0 files",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Supply chain",
+      "id": "S2",
+      "title": "No outbound-network, process-spawn or dynamic-code APIs in 8 source files",
+      "expected": "0 hits",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Supply chain",
+      "id": "S3",
+      "title": "Only the loopback server touches node:http; no client requests in product code",
+      "expected": "0 client calls",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Supply chain",
+      "id": "S4",
+      "title": "Zero runtime dependencies",
+      "expected": "0",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Supply chain",
+      "id": "S5",
+      "title": "No install-time lifecycle scripts",
+      "expected": "0",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Supply chain",
+      "id": "S6",
+      "title": "HTML report escapes hostile repository text",
+      "expected": "no raw <img",
+      "observed": "escaped",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Skills",
+      "id": "K1",
+      "title": "Twelve specialist skills present",
+      "expected": "12",
+      "observed": "12",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Skills",
+      "id": "K2",
+      "title": "Valid frontmatter (name = folder, description present)",
+      "expected": "0 invalid",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Skills",
+      "id": "K3",
+      "title": "Each skill has objective, trigger, procedure, prohibitions, contract, worked example, failure and fixture sections",
+      "expected": "0 missing",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Skills",
+      "id": "K4",
+      "title": "Every skill has a distinct procedure (no copied template)",
+      "expected": "12 distinct",
+      "observed": "12",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Skills",
+      "id": "K5",
+      "title": "Skills call only commands that exist, via the published `contextsutra` CLI",
+      "expected": "0 bad",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Legal",
+      "id": "L1",
+      "title": "Apache-2.0 LICENSE text present",
+      "expected": "Apache License, Version 2.0",
+      "observed": "yes",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Legal",
+      "id": "L2",
+      "title": "package.json license is Apache-2.0",
+      "expected": "Apache-2.0",
+      "observed": "Apache-2.0",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Legal",
+      "id": "L3",
+      "title": "NOTICE and THIRD_PARTY_NOTICES present",
+      "expected": "both",
+      "observed": "true/true",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Legal",
+      "id": "L4",
+      "title": "SECURITY, CONTRIBUTING, CODE_OF_CONDUCT, CHANGELOG, SUPPORT present",
+      "expected": "all",
+      "observed": "checked",
+      "status": "pass",
+      "evidence": ""
+    },
+    {
+      "category": "Legal",
+      "id": "L5",
+      "title": "No forbidden marketing claims (guarantees, universal support, certification)",
+      "expected": "0 files",
+      "observed": "0",
+      "status": "pass",
+      "evidence": ""
+    }
+  ]
+}

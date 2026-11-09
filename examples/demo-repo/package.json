@@ -1,0 +1,11 @@
+{
+  "name": "contextsutra-example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "zod": "^4.0.0"
+  }
+}

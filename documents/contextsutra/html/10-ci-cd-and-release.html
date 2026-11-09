@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10. CI/CD and release · ContextSutra AI</title><meta name="description" content="10. CI/CD and release: ContextSutra AI documentation by Vatsal Shah."><meta name="author" content="Vatsal Shah"><meta name="color-scheme" content="light dark">
+<meta property="og:title" content="10. CI/CD and release · ContextSutra AI"><meta property="og:description" content="10. CI/CD and release: ContextSutra AI documentation by Vatsal Shah."><meta property="og:type" content="website">
+<style>
+:root{--bg:#f7f8fb;--surface:#fff;--ink:#14161f;--muted:#566074;--line:#d9deea;--brand:#4b3fd6;--brand-ink:#fff;--ok:#0b6b3a;--ok-bg:#e3f6ea;--bad:#a4161a;--bad-bg:#fde8e8;--warn:#7a4b00;--warn-bg:#fff2d6;--info:#124e8a;--info-bg:#e4f0fc;--code:#eef0f7;--radius:14px;--shadow:0 1px 2px rgba(20,22,31,.06),0 8px 24px rgba(20,22,31,.06)}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1017;--surface:#161a24;--ink:#eceff7;--muted:#9aa4ba;--line:#2a3042;--brand:#8f86ff;--brand-ink:#0e1017;--ok:#6fe0a0;--ok-bg:#12301f;--bad:#ff8d90;--bad-bg:#3a1618;--warn:#ffd27a;--warn-bg:#3a2a0a;--info:#8cc4ff;--info-bg:#10294a;--code:#1d2232;--shadow:none}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:9}.skip:focus{left:0}
+header.site{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:5}
+header.site div{max-width:72rem;margin:auto;padding:.7rem 1.25rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+header.site strong{font-size:1.05rem;letter-spacing:.2px}header.site nav{display:flex;gap:.25rem 1rem;flex-wrap:wrap;margin-left:auto}header.site nav a{text-decoration:none;color:var(--muted);font-size:.92rem;padding:.2rem .1rem}header.site nav a[aria-current=page],header.site nav a:hover{color:var(--ink);box-shadow:0 2px 0 var(--brand)}
+main{max-width:72rem;margin:0 auto;padding:2rem 1.25rem 4rem}
+.hero{background:linear-gradient(135deg,var(--brand),#7b5cff 60%,#00a3a3);color:#fff;border-radius:calc(var(--radius) + 6px);padding:2.4rem 2rem;box-shadow:var(--shadow);margin-bottom:2rem}
+.hero h1{margin:.1rem 0 .4rem;font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15}.hero p{margin:.2rem 0;max-width:46rem;opacity:.95}
+.hero .tag{font-weight:600;letter-spacing:.3px}
+h1,h2,h3{line-height:1.25}h2{margin-top:2.4rem;padding-bottom:.35rem;border-bottom:1px solid var(--line)}h3{margin-top:1.6rem}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));margin:1rem 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem;box-shadow:var(--shadow)}
+.card h3{margin:.1rem 0 .4rem;font-size:1.05rem}.card p{margin:.3rem 0;color:var(--muted)}
+.stat{font-size:2rem;font-weight:700;line-height:1.1}.stat small{display:block;font-size:.8rem;font-weight:500;color:var(--muted);margin-top:.3rem}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.95rem}
+caption{text-align:left;padding:.5rem 0;color:var(--muted);font-size:.9rem}
+th,td{padding:.55rem .75rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{background:var(--code);font-size:.85rem;text-transform:uppercase;letter-spacing:.4px}tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+.tablewrap{overflow-x:auto;margin:1rem 0}
+code,pre{font:.9em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}code{background:var(--code);padding:.1rem .35rem;border-radius:5px}
+pre{background:var(--code);padding:1rem;border-radius:10px;overflow-x:auto;border:1px solid var(--line)}pre code{background:none;padding:0}
+blockquote{margin:1rem 0;padding:.6rem 1rem;border-left:4px solid var(--brand);background:var(--info-bg);border-radius:0 10px 10px 0}
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.12rem .6rem;border-radius:999px;font-size:.82rem;font-weight:600;border:1px solid currentColor;white-space:nowrap}
+.b-pass,.b-go_candidate,.b-current,.b-same{color:var(--ok);background:var(--ok-bg)}.b-fail,.b-no_go,.b-stale,.b-block,.b-invalid,.b-missing_or_blocked{color:var(--bad);background:var(--bad-bg)}.b-inconclusive,.b-review,.b-human_review_required,.b-changed,.b-error,.b-not_supported,.b-skipped{color:var(--warn);background:var(--warn-bg)}.b-info{color:var(--info);background:var(--info-bg)}
+footer{max-width:72rem;margin:0 auto;padding:1.5rem 1.25rem 3rem;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.3rem;margin:1rem 0}.toc ul{margin:.3rem 0;padding-left:1.2rem}
+@media (max-width:40rem){header.site nav{margin-left:0}.hero{padding:1.5rem 1.1rem}}
+@media print{header.site,.skip{display:none}body{background:#fff;color:#000}.card,table{box-shadow:none}a{color:#000}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body><a class="skip" href="#main">Skip to content</a>
+<header class="site"><div><strong>ContextSutra AI</strong><nav aria-label="Documentation"><a href="01-executive-summary.html">Executive summary</a><a href="02-functional-specification.html">Functional specification</a><a href="03-architecture.html">Architecture</a><a href="04-technical-reference.html">Technical reference</a><a href="05-user-guide.html">User guide</a><a href="06-skills-catalog.html">Skills catalog</a><a href="07-security-and-legal.html">Security and legal</a><a href="index.html">All docs</a></nav></div></header>
+<main id="main"><article><h1 id="10-ci-cd-and-release">10. CI/CD and release</h1><nav class="toc" aria-label="On this page"><strong>On this page</strong><ul><li><a href="#continuous-integration">Continuous integration</a></li><li><a href="#release-checklist">Release checklist</a></li><li><a href="#versioning">Versioning</a></li><li><a href="#provenance">Provenance</a></li></ul></nav>
+<h2 id="continuous-integration">Continuous integration</h2>
+<p><code>.github/workflows/ci.yml</code> runs on every push and pull request across Ubuntu, Windows and macOS with Node 20, 22 and 24 (9 jobs). Each job runs:</p>
+<ol><li><code>npm test</code></li><li><code>npm run demo</code></li><li><code>npm run doctor</code></li><li><code>contextsutra audit --out artifacts/audit</code></li><li><code>node scripts/build-docs.mjs --check</code>, which fails when the committed HTML documentation is out of date.</li></ol>
+<p>On Node 24 the audit and demo artifacts are uploaded. Permissions are read-only. Actions are pinned by major version.</p>
+<h2 id="release-checklist">Release checklist</h2>
+<ol><li>Update <code>CHANGELOG.md</code> and the version in <code>package.json</code> and <code>CITATION.cff</code>.</li><li><code>npm test</code>, <code>npm run audit</code>, <code>npm run evidence</code>, <code>npm run docs</code>.</li><li>Commit, push, and wait for all CI jobs to pass. Do not tag on red.</li><li>Tag <code>vX.Y.Z</code> and create a GitHub release with the audit report attached.</li><li><code>npm pack --dry-run</code> and check the file list contains no secrets or test artifacts.</li><li><code>npm publish --access public</code> (requires the maintainer&#39;s npm login and 2FA).</li><li>Verify with <code>npx contextsutra@X.Y.Z version</code> from an empty directory.</li></ol>
+<h2 id="versioning">Versioning</h2>
+<p>Semantic Versioning. The capsule schema is versioned separately (<code>contextsutra.capsule.v1</code>); a breaking schema change needs a new schema string and a migration note.</p>
+<h2 id="provenance">Provenance</h2>
+<p>Releases are not yet signed. Planned: npm provenance from GitHub Actions and Sigstore signatures.</p></article></main>
+<footer>ContextSutra AI · Created by Vatsal Shah · Apache-2.0 · Generated offline; no scripts, no trackers, no network calls.</footer></body></html>

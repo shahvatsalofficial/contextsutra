@@ -1,0 +1,37 @@
+[
+  {
+    "path": "README.md",
+    "line": 14,
+    "done": false,
+    "text": "- [ ] Add source-backed error handling rules.",
+    "provenance": "unverified-repository-note"
+  },
+  {
+    "path": "README.md",
+    "line": 15,
+    "done": false,
+    "text": "- [ ] Review default configuration values before deploying to a public environment.",
+    "provenance": "unverified-repository-note"
+  },
+  {
+    "path": "TASKS.md",
+    "line": 2,
+    "done": false,
+    "text": "- [ ] Investigate a structured event log format.",
+    "provenance": "unverified-repository-note"
+  },
+  {
+    "path": "TASKS.md",
+    "line": 3,
+    "done": false,
+    "text": "- [ ] Document API timeout handling.",
+    "provenance": "unverified-repository-note"
+  },
+  {
+    "path": "TASKS.md",
+    "line": 4,
+    "done": true,
+    "text": "- [x] Adopt the initial ADR template.",
+    "provenance": "unverified-repository-note"
+  }
+]

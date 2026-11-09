@@ -1,0 +1,12 @@
+ContextSutra AI
+Copyright 2026 Vatsal Shah
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+This product includes no third-party code. It has zero runtime dependencies and uses
+only the Node.js standard library.
+
+"ContextSutra" is the name of this project. No trademark registration is claimed.
+Names of third-party products (Claude Code, Cursor, OpenAI Codex, Gemini CLI, GitHub
+Copilot, VS Code) are used only to describe file locations and compatibility. They
+belong to their owners, and this project is not affiliated with or endorsed by them.

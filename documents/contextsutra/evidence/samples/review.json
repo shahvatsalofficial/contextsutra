@@ -1,0 +1,14 @@
+{
+  "gate": "HUMAN_REVIEW_REQUIRED",
+  "residualFindings": [],
+  "redactedLines": 0,
+  "quarantinedLines": 0,
+  "perSource": [],
+  "checklist": [
+    "Open the capsule JSON and read every excerpt.",
+    "Confirm no customer data, personal data or internal URLs appear.",
+    "Confirm redaction counts match what you expect.",
+    "Share only with tools and people you are authorised to share with."
+  ],
+  "note": "Regex redaction is best effort. This gate can block, but it never certifies a capsule as safe."
+}

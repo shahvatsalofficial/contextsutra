@@ -1,0 +1,22 @@
+[
+  {
+    "path": "docs/adr/0001-local-storage.md",
+    "status": "accepted",
+    "approved": true,
+    "needsAttention": false,
+    "evidence": [
+      {
+        "line": 2,
+        "text": "Status: accepted"
+      },
+      {
+        "line": 3,
+        "text": "Date: 2026-11-01"
+      },
+      {
+        "line": 4,
+        "text": "Decision: Use local JSON fixtures for the public demo."
+      }
+    ]
+  }
+]

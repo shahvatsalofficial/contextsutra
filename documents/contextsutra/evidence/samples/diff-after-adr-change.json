@@ -1,0 +1,17 @@
+{
+  "status": "CHANGED",
+  "added": [],
+  "removed": [],
+  "changed": [
+    "docs/adr/0001-local-storage.md"
+  ],
+  "decisionStatusChanges": [
+    {
+      "path": "docs/adr/0001-local-storage.md",
+      "from": "accepted",
+      "to": "superseded"
+    }
+  ],
+  "oldDigest": "53b887e5fae928b40c59fa22d306db159d0081b9b5e1e69d7b9267b5de2cefe4",
+  "newDigest": "197224aa83d2b6da7f6bfe57f55db327264adcefa93a6994a26ab6c86f63aed4"
+}

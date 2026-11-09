@@ -1,0 +1,15 @@
+node_modules/
+.contextsutra/
+artifacts/
+contextsutra-demo/
+**/.env
+**/.env.*
+!**/.env.example
+**/credentials*
+**/secrets*
+**/*.pem
+**/*.key
+*.tgz
+*.log
+coverage/
+.DS_Store

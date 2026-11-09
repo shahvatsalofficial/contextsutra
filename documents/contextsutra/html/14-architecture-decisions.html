@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>14. Architecture decisions · ContextSutra AI</title><meta name="description" content="14. Architecture decisions: ContextSutra AI documentation by Vatsal Shah."><meta name="author" content="Vatsal Shah"><meta name="color-scheme" content="light dark">
+<meta property="og:title" content="14. Architecture decisions · ContextSutra AI"><meta property="og:description" content="14. Architecture decisions: ContextSutra AI documentation by Vatsal Shah."><meta property="og:type" content="website">
+<style>
+:root{--bg:#f7f8fb;--surface:#fff;--ink:#14161f;--muted:#566074;--line:#d9deea;--brand:#4b3fd6;--brand-ink:#fff;--ok:#0b6b3a;--ok-bg:#e3f6ea;--bad:#a4161a;--bad-bg:#fde8e8;--warn:#7a4b00;--warn-bg:#fff2d6;--info:#124e8a;--info-bg:#e4f0fc;--code:#eef0f7;--radius:14px;--shadow:0 1px 2px rgba(20,22,31,.06),0 8px 24px rgba(20,22,31,.06)}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1017;--surface:#161a24;--ink:#eceff7;--muted:#9aa4ba;--line:#2a3042;--brand:#8f86ff;--brand-ink:#0e1017;--ok:#6fe0a0;--ok-bg:#12301f;--bad:#ff8d90;--bad-bg:#3a1618;--warn:#ffd27a;--warn-bg:#3a2a0a;--info:#8cc4ff;--info-bg:#10294a;--code:#1d2232;--shadow:none}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:9}.skip:focus{left:0}
+header.site{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:5}
+header.site div{max-width:72rem;margin:auto;padding:.7rem 1.25rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+header.site strong{font-size:1.05rem;letter-spacing:.2px}header.site nav{display:flex;gap:.25rem 1rem;flex-wrap:wrap;margin-left:auto}header.site nav a{text-decoration:none;color:var(--muted);font-size:.92rem;padding:.2rem .1rem}header.site nav a[aria-current=page],header.site nav a:hover{color:var(--ink);box-shadow:0 2px 0 var(--brand)}
+main{max-width:72rem;margin:0 auto;padding:2rem 1.25rem 4rem}
+.hero{background:linear-gradient(135deg,var(--brand),#7b5cff 60%,#00a3a3);color:#fff;border-radius:calc(var(--radius) + 6px);padding:2.4rem 2rem;box-shadow:var(--shadow);margin-bottom:2rem}
+.hero h1{margin:.1rem 0 .4rem;font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15}.hero p{margin:.2rem 0;max-width:46rem;opacity:.95}
+.hero .tag{font-weight:600;letter-spacing:.3px}
+h1,h2,h3{line-height:1.25}h2{margin-top:2.4rem;padding-bottom:.35rem;border-bottom:1px solid var(--line)}h3{margin-top:1.6rem}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));margin:1rem 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem;box-shadow:var(--shadow)}
+.card h3{margin:.1rem 0 .4rem;font-size:1.05rem}.card p{margin:.3rem 0;color:var(--muted)}
+.stat{font-size:2rem;font-weight:700;line-height:1.1}.stat small{display:block;font-size:.8rem;font-weight:500;color:var(--muted);margin-top:.3rem}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.95rem}
+caption{text-align:left;padding:.5rem 0;color:var(--muted);font-size:.9rem}
+th,td{padding:.55rem .75rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{background:var(--code);font-size:.85rem;text-transform:uppercase;letter-spacing:.4px}tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+.tablewrap{overflow-x:auto;margin:1rem 0}
+code,pre{font:.9em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}code{background:var(--code);padding:.1rem .35rem;border-radius:5px}
+pre{background:var(--code);padding:1rem;border-radius:10px;overflow-x:auto;border:1px solid var(--line)}pre code{background:none;padding:0}
+blockquote{margin:1rem 0;padding:.6rem 1rem;border-left:4px solid var(--brand);background:var(--info-bg);border-radius:0 10px 10px 0}
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.12rem .6rem;border-radius:999px;font-size:.82rem;font-weight:600;border:1px solid currentColor;white-space:nowrap}
+.b-pass,.b-go_candidate,.b-current,.b-same{color:var(--ok);background:var(--ok-bg)}.b-fail,.b-no_go,.b-stale,.b-block,.b-invalid,.b-missing_or_blocked{color:var(--bad);background:var(--bad-bg)}.b-inconclusive,.b-review,.b-human_review_required,.b-changed,.b-error,.b-not_supported,.b-skipped{color:var(--warn);background:var(--warn-bg)}.b-info{color:var(--info);background:var(--info-bg)}
+footer{max-width:72rem;margin:0 auto;padding:1.5rem 1.25rem 3rem;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.3rem;margin:1rem 0}.toc ul{margin:.3rem 0;padding-left:1.2rem}
+@media (max-width:40rem){header.site nav{margin-left:0}.hero{padding:1.5rem 1.1rem}}
+@media print{header.site,.skip{display:none}body{background:#fff;color:#000}.card,table{box-shadow:none}a{color:#000}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body><a class="skip" href="#main">Skip to content</a>
+<header class="site"><div><strong>ContextSutra AI</strong><nav aria-label="Documentation"><a href="01-executive-summary.html">Executive summary</a><a href="02-functional-specification.html">Functional specification</a><a href="03-architecture.html">Architecture</a><a href="04-technical-reference.html">Technical reference</a><a href="05-user-guide.html">User guide</a><a href="06-skills-catalog.html">Skills catalog</a><a href="07-security-and-legal.html">Security and legal</a><a href="index.html">All docs</a></nav></div></header>
+<main id="main"><article><h1 id="14-architecture-decisions">14. Architecture decisions</h1><nav class="toc" aria-label="On this page"><strong>On this page</strong><ul><li><a href="#adr-1-canonical-capsule-schema">ADR-1. Canonical capsule schema</a></li><li><a href="#adr-2-local-first-no-network">ADR-2. Local-first, no network</a></li><li><a href="#adr-3-javascript-on-node-js-zero-dependencies">ADR-3. JavaScript on Node.js, zero dependencies</a></li><li><a href="#adr-4-host-adapters-are-file-copies">ADR-4. Host adapters are file copies</a></li><li><a href="#adr-5-trust-labelling">ADR-5. Trust labelling</a></li><li><a href="#adr-6-privacy-by-default">ADR-6. Privacy by default</a></li><li><a href="#adr-7-checksum-now-signatures-later">ADR-7. Checksum now, signatures later</a></li><li><a href="#adr-8-file-based-storage-no-index-yet">ADR-8. File-based storage; no index yet</a></li><li><a href="#adr-9-server-is-loopback-and-read-only">ADR-9. Server is loopback and read-only</a></li></ul></nav>
+<p>Each record: context, decision, trade-offs, alternatives, status. All are <strong>accepted</strong> by the maintainer as of v0.2.0.</p>
+<h2 id="adr-1-canonical-capsule-schema">ADR-1. Canonical capsule schema</h2>
+<p><strong>Context.</strong> Context must move between tools and be checkable. <strong>Decision.</strong> One JSON schema, <code>contextsutra.capsule.v1</code>, with sorted-key canonical form and an additive-field policy. <strong>Trade-offs.</strong> Simple and diffable; larger than a bare summary. <strong>Alternatives.</strong> Free Markdown only (no verification); a database (not portable). </p>
+<h2 id="adr-2-local-first-no-network">ADR-2. Local-first, no network</h2>
+<p><strong>Context.</strong> Source repositories are sensitive. <strong>Decision.</strong> The CLI has no network code; the audit scans for it. <strong>Trade-offs.</strong> No cloud features; the user moves files themselves. <strong>Alternatives.</strong> Hosted indexing (rejected: trust and data residency).</p>
+<h2 id="adr-3-javascript-on-node-js-zero-dependencies">ADR-3. JavaScript on Node.js, zero dependencies</h2>
+<p><strong>Context.</strong> Needs to run anywhere developers already have a toolchain. <strong>Decision.</strong> ES modules on Node 20+, standard library only. <strong>Trade-offs.</strong> No type checker at build time; JSDoc and tests carry the load. <strong>Alternatives.</strong> TypeScript (build step, dependencies), Python (second runtime for most users).</p>
+<h2 id="adr-4-host-adapters-are-file-copies">ADR-4. Host adapters are file copies</h2>
+<p><strong>Context.</strong> Host skill loading is undocumented or changing. <strong>Decision.</strong> <code>install</code> copies files to documented directories and <code>doctor</code> reports presence and drift only. <strong>Trade-offs.</strong> No activation guarantee. <strong>Alternatives.</strong> Reaching into IDE state (rejected: unsafe, unsupported).</p>
+<h2 id="adr-5-trust-labelling">ADR-5. Trust labelling</h2>
+<p><strong>Context.</strong> Repository text can contain planted instructions. <strong>Decision.</strong> Every source is <code>untrusted-source-text</code>; instruction-like lines are quarantined; renders open with a boundary banner. <strong>Trade-offs.</strong> Pattern list can miss phrasing. <strong>Alternatives.</strong> Model-based detection (needs a model call).</p>
+<h2 id="adr-6-privacy-by-default">ADR-6. Privacy by default</h2>
+<p><strong>Context.</strong> Redaction can never be perfect. <strong>Decision.</strong> Allow-list documents, deny-list names, redact, then gate with a review that never says safe. <strong>Trade-offs.</strong> Some benign lines get redacted. <strong>Alternatives.</strong> Opt-in redaction (rejected).</p>
+<h2 id="adr-7-checksum-now-signatures-later">ADR-7. Checksum now, signatures later</h2>
+<p><strong>Context.</strong> A self-contained digest is forgeable. <strong>Decision.</strong> Ship the digest, label <code>signed: false</code>, document the limit, plan Sigstore. <strong>Trade-offs.</strong> No proof of origin yet. <strong>Alternatives.</strong> Home-made signing (rejected).</p>
+<h2 id="adr-8-file-based-storage-no-index-yet">ADR-8. File-based storage; no index yet</h2>
+<p><strong>Context.</strong> Fast start, no daemon. <strong>Decision.</strong> JSON files only. <strong>Trade-offs.</strong> No search over large repos. <strong>Alternatives.</strong> SQLite FTS5 (planned, opt-in).</p>
+<h2 id="adr-9-server-is-loopback-and-read-only">ADR-9. Server is loopback and read-only</h2>
+<p><strong>Context.</strong> A demo endpoint must not become a production service by accident. <strong>Decision.</strong> Bind 127.0.0.1, bearer token, Host guard, GET only. <strong>Trade-offs.</strong> Not usable remotely. <strong>Alternatives.</strong> Hardened remote service (needs TLS, identity, audit logging; not built).</p></article></main>
+<footer>ContextSutra AI · Created by Vatsal Shah · Apache-2.0 · Generated offline; no scripts, no trackers, no network calls.</footer></body></html>

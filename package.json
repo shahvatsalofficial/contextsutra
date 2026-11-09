@@ -1,0 +1,23 @@
+{
+  "name": "contextsutra",
+  "version": "0.2.0",
+  "description": "ContextSutra AI: local-first, keyless CLI that builds verifiable, privacy-aware project context capsules plus 12 portable agent skills for Claude Code, Cursor, Codex, Gemini CLI and Copilot.",
+  "keywords": ["context-engineering", "ai-agents", "agent-skills", "claude-code", "cursor", "codex", "gemini-cli", "copilot", "mcp", "local-first", "privacy", "developer-tools", "cli"],
+  "license": "Apache-2.0",
+  "author": "Vatsal Shah",
+  "homepage": "https://github.com/shahvatsalofficial/contextsutra#readme",
+  "repository": {"type": "git", "url": "git+https://github.com/shahvatsalofficial/contextsutra.git"},
+  "bugs": {"url": "https://github.com/shahvatsalofficial/contextsutra/issues"},
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "bin": {"contextsutra": "./packages/cli/index.mjs"},
+  "files": ["packages", "skills", "schemas", "policies", "workflows", "adapters", "examples", "docs", "documents", "scripts", "compatibility-matrix.json", "LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SUPPORT.md", "SECURITY.md", "CHANGELOG.md", "CITATION.cff", "llms.txt", "README.md", "AGENTS.md", "CLAUDE.md", "GEMINI.md", "GOVERNANCE.md", "ROADMAP.md"],
+  "scripts": {
+    "test": "node --test",
+    "demo": "node packages/cli/index.mjs demo --out artifacts/demo",
+    "audit": "node packages/cli/index.mjs audit --out artifacts/audit",
+    "doctor": "node packages/cli/index.mjs doctor --root .",
+    "docs": "node scripts/build-docs.mjs",
+    "evidence": "node scripts/build-evidence.mjs"
+  }
+}
