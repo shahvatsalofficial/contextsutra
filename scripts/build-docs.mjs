@@ -14,7 +14,7 @@ const OUT = join(SRC, 'html');
 export function buildDocs() {
   const files = readdirSync(SRC).filter(f => f.endsWith('.md')).sort();
   const docs = files.map(f => {
-    const md = readFileSync(join(SRC, f), 'utf8');
+    const md = readFileSync(join(SRC, f), 'utf8').replace(/\r\n/g, '\n');
     const title = /^#\s+(.*)$/m.exec(md)?.[1] ?? f;
     return { file: f, name: f.replace(/\.md$/, ''), title: unmd(title), md };
   });

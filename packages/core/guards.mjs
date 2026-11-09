@@ -41,7 +41,7 @@ export const INJECTION_PATTERNS = [
   /(?:new|updated)\s+instructions?\s*:/i
 ];
 
-export const isSafeRel = (rel) => typeof rel === 'string' && rel !== '' && !path.isAbsolute(rel) && !rel.split(/[\\/]+/).some(x => x === '..' || x === '.' || !x);
+export const isSafeRel = (rel) => typeof rel === 'string' && rel !== '' && !path.isAbsolute(rel) && !/^(?:[A-Za-z]:|[\\/])/.test(rel) &&!rel.split(/[\\/]+/).some(x => x === '..' || x === '.' || !x);
 export function safeFile(root, rel) {
   if (!isSafeRel(rel)) throw new Error('Invalid relative file path');
   const resolved = path.resolve(root,rel);
