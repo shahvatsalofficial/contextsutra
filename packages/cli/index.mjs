@@ -87,7 +87,7 @@ async function main() {
     }
     case 'install': {
       const host = val('--host', 'generic'); if (!(host in hosts)) throw new Error('Invalid host. Choose ' + Object.keys(hosts).join(', '));
-      const target = root(), dst = path.join(target, hosts[host]);
+      const target = fs.realpathSync(root()), dst = path.join(target, hosts[host]);
       if (!fs.existsSync(skillsDir)) throw new Error('Canonical skills directory not found');
       const resolvedRoot = fs.realpathSync(target);
       const items = fs.readdirSync(skillsDir, {withFileTypes: true}).filter(x => x.isDirectory() && fs.existsSync(path.join(skillsDir, x.name, 'SKILL.md')))
