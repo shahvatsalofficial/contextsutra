@@ -41,8 +41,6 @@ jobs:
         run: grep -q "## ${{ steps.ver.outputs.version }}" CHANGELOG.md
       - if: steps.ver.outputs.published == 'false'
         run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - if: steps.ver.outputs.published == 'false'
         run: |
           gh release view "v${{ steps.ver.outputs.version }}" >/dev/null 2>&1 || \

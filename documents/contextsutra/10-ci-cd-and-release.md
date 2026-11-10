@@ -34,10 +34,9 @@ Releases are not yet signed. Planned: npm provenance from GitHub Actions and Sig
 
 `.github/workflows/release.yml` runs on every push to `main`. If the `version` in `package.json` is not on npm yet, it runs the tests, the audit and the docs check, confirms `CHANGELOG.md` has a section for that version, publishes with npm provenance, and creates a GitHub release with the audit reports attached. If the version is already published it does nothing.
 
-One-time setup:
+One-time setup (trusted publishing, no token):
 
-1. On npmjs.com create an **Automation** access token (granular token with read and write on the `contextsutra` package also works). Automation tokens skip the 2FA prompt, so treat the token as a secret.
-2. In the GitHub repository open Settings, Secrets and variables, Actions, and add a repository secret named `NPM_TOKEN`.
-3. To release: bump `version` in `package.json` and `CITATION.cff`, add a `## X.Y.Z` section to `CHANGELOG.md`, run `npm run docs`, commit, push to `main`.
+1. On npmjs.com open the package settings, then **Trusted Publisher**, choose **GitHub Actions**, and enter user `shahvatsalofficial`, repository `contextsutra`, workflow filename `release.yml`, empty environment, and tick **Allow npm publish**.
+2. To release: bump `version` in `package.json` and `CITATION.cff`, add a `## X.Y.Z` section to `CHANGELOG.md`, run `npm run docs`, commit, push to `main`.
 
-Never paste the token into chat, code or logs.
+npm exchanges a short-lived GitHub identity token for publish rights, so no long-lived secret is stored. Requires npm 11.5.1 or newer, which ships with Node 24.
