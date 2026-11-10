@@ -1,0 +1,52 @@
+name: Release
+# Publishes to npm when a push to main carries a package.json version that is not on npm yet.
+# Bump "version" in package.json and CHANGELOG.md, push, and this workflow does the rest.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: release
+  cancel-in-progress: false
+permissions:
+  contents: write
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      - id: ver
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if npm view "contextsutra@$VERSION" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "contextsutra@$VERSION is already on npm; nothing to do."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.ver.outputs.published == 'false'
+        run: npm test
+      - if: steps.ver.outputs.published == 'false'
+        run: node packages/cli/index.mjs audit --out artifacts/audit
+      - if: steps.ver.outputs.published == 'false'
+        run: node scripts/build-docs.mjs --check
+      - if: steps.ver.outputs.published == 'false'
+        run: grep -q "## ${{ steps.ver.outputs.version }}" CHANGELOG.md
+      - if: steps.ver.outputs.published == 'false'
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - if: steps.ver.outputs.published == 'false'
+        run: |
+          gh release view "v${{ steps.ver.outputs.version }}" >/dev/null 2>&1 || \
+          gh release create "v${{ steps.ver.outputs.version }}" artifacts/audit/audit.md artifacts/audit/audit.html artifacts/audit/audit.json \
+            --title "v${{ steps.ver.outputs.version }}" --generate-notes --target "${{ github.sha }}"
+        env:
+          GH_TOKEN: ${{ github.token }}

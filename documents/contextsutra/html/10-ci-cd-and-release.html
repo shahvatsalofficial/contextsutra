@@ -38,7 +38,7 @@ footer{max-width:72rem;margin:0 auto;padding:1.5rem 1.25rem 3rem;color:var(--mut
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style></head><body><a class="skip" href="#main">Skip to content</a>
 <header class="site"><div><strong>ContextSutra AI</strong><nav aria-label="Documentation"><a href="01-executive-summary.html">Executive summary</a><a href="02-functional-specification.html">Functional specification</a><a href="03-architecture.html">Architecture</a><a href="04-technical-reference.html">Technical reference</a><a href="05-user-guide.html">User guide</a><a href="06-skills-catalog.html">Skills catalog</a><a href="07-security-and-legal.html">Security and legal</a><a href="index.html">All docs</a></nav></div></header>
-<main id="main"><article><h1 id="10-ci-cd-and-release">10. CI/CD and release</h1><nav class="toc" aria-label="On this page"><strong>On this page</strong><ul><li><a href="#continuous-integration">Continuous integration</a></li><li><a href="#release-checklist">Release checklist</a></li><li><a href="#versioning">Versioning</a></li><li><a href="#provenance">Provenance</a></li></ul></nav>
+<main id="main"><article><h1 id="10-ci-cd-and-release">10. CI/CD and release</h1><nav class="toc" aria-label="On this page"><strong>On this page</strong><ul><li><a href="#continuous-integration">Continuous integration</a></li><li><a href="#release-checklist">Release checklist</a></li><li><a href="#versioning">Versioning</a></li><li><a href="#provenance">Provenance</a></li><li><a href="#automatic-npm-publish">Automatic npm publish</a></li></ul></nav>
 <h2 id="continuous-integration">Continuous integration</h2>
 <p><code>.github/workflows/ci.yml</code> runs on every push and pull request across Ubuntu and Windows with Node 20, 22 and 24, and macOS with Node 24 (7 jobs; macOS runs Node 24 only). Each job runs:</p>
 <ol><li><code>npm test</code></li><li><code>npm run demo</code></li><li><code>npm run doctor</code></li><li><code>contextsutra audit --out artifacts/audit</code></li><li><code>node scripts/build-docs.mjs --check</code>, which fails when the committed HTML documentation is out of date.</li></ol>
@@ -48,5 +48,10 @@ footer{max-width:72rem;margin:0 auto;padding:1.5rem 1.25rem 3rem;color:var(--mut
 <h2 id="versioning">Versioning</h2>
 <p>Semantic Versioning. The capsule schema is versioned separately (<code>contextsutra.capsule.v1</code>); a breaking schema change needs a new schema string and a migration note.</p>
 <h2 id="provenance">Provenance</h2>
-<p>Releases are not yet signed. Planned: npm provenance from GitHub Actions and Sigstore signatures.</p></article></main>
+<p>Releases are not yet signed. Planned: npm provenance from GitHub Actions and Sigstore signatures.</p>
+<h2 id="automatic-npm-publish">Automatic npm publish</h2>
+<p><code>.github/workflows/release.yml</code> runs on every push to <code>main</code>. If the <code>version</code> in <code>package.json</code> is not on npm yet, it runs the tests, the audit and the docs check, confirms <code>CHANGELOG.md</code> has a section for that version, publishes with npm provenance, and creates a GitHub release with the audit reports attached. If the version is already published it does nothing.</p>
+<p>One-time setup:</p>
+<ol><li>On npmjs.com create an <strong>Automation</strong> access token (granular token with read and write on the <code>contextsutra</code> package also works). Automation tokens skip the 2FA prompt, so treat the token as a secret.</li><li>In the GitHub repository open Settings, Secrets and variables, Actions, and add a repository secret named <code>NPM_TOKEN</code>.</li><li>To release: bump <code>version</code> in <code>package.json</code> and <code>CITATION.cff</code>, add a <code>## X.Y.Z</code> section to <code>CHANGELOG.md</code>, run <code>npm run docs</code>, commit, push to <code>main</code>.</li></ol>
+<p>Never paste the token into chat, code or logs.</p></article></main>
 <footer>ContextSutra AI · Created by Vatsal Shah · Apache-2.0 · Generated offline; no scripts, no trackers, no network calls.</footer></body></html>
