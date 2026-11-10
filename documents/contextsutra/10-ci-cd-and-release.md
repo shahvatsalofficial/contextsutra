@@ -2,7 +2,7 @@
 
 ## Continuous integration
 
-`.github/workflows/ci.yml` runs on every push and pull request across Ubuntu, Windows and macOS with Node 20, 22 and 24 (9 jobs). Each job runs:
+`.github/workflows/ci.yml` runs on every push and pull request across Ubuntu and Windows with Node 20, 22 and 24, and macOS with Node 24 (7 jobs; macOS runs Node 24 only). Each job runs:
 
 1. `npm test`
 2. `npm run demo`

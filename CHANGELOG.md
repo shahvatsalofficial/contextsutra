@@ -16,7 +16,7 @@
 - **Skills rewritten.** The 12 skills were near-identical copies of one template and pointed at a repo-relative path. Each is now distinct, with eight required sections, and calls the published `npx contextsutra` commands.
 - Digest uses canonical (sorted-key) JSON; capsules from 0.1.0 will not validate and must be rescanned.
 - Package renamed to `contextsutra` and made publishable; CLI argument errors are explicit; install is transactional with rollback.
-- CI matrix: Ubuntu, Windows, macOS × Node 20, 22, 24, plus audit and docs checks.
+- CI matrix: Ubuntu and Windows × Node 20, 22, 24 plus macOS × Node 24, with audit and docs checks.
 
 ### Fixed
 - Unreadable directories no longer crash a scan.
