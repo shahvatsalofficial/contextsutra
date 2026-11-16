@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use ContextSutra AI, please cite it as below."
 title: "ContextSutra AI"
 type: software
-version: 0.2.0
+version: 0.2.1
 license: Apache-2.0
 authors:
   - family-names: Shah

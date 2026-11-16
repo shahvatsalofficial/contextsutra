@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — 2026-11-16
+
+### Changed
+- GitHub Actions upgraded to current majors: `actions/checkout@v7`, `actions/setup-node@v7`, `actions/upload-artifact@v7`.
+- First release published through the automated trusted-publishing workflow.
+
 ## 0.2.0 — 2026-11-10
 
 ### Added

@@ -1,6 +1,6 @@
 {
   "name": "contextsutra",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "ContextSutra AI: local-first, keyless CLI that builds verifiable, privacy-aware project context capsules plus 12 portable agent skills for Claude Code, Cursor, Codex, Gemini CLI and Copilot.",
   "keywords": ["context-engineering", "ai-agents", "agent-skills", "claude-code", "cursor", "codex", "gemini-cli", "copilot", "mcp", "local-first", "privacy", "developer-tools", "cli"],
   "license": "Apache-2.0",
