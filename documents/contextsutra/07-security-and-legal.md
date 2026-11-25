@@ -11,6 +11,26 @@ This page describes engineering controls. It is not legal advice and does not cl
 5. No execution of repository scripts. Script names are listed only.
 6. Server is loopback-only, token-protected and read-only.
 
+## Trust boundaries
+
+<!--svg:trust-->
+
+```mermaid
+flowchart LR
+  U[Untrusted input] --> T[Offline tool] --> O[Output you control]
+```
+
+## How a line is treated
+
+<!--svg:redaction-->
+
+```mermaid
+flowchart TD
+  L[Line] --> S{Secret?} -->|yes| R[Redact]
+  S -->|no| I{Instruction?} -->|yes| Q[Quarantine]
+  I -->|no| C[Capture]
+```
+
 ## Threat analysis (STRIDE summary)
 
 | Threat | Example | Control | Evidence |

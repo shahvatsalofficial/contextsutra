@@ -9,6 +9,27 @@
 | Maintainer | Keep shared context current |
 | Security reviewer | Verify nothing sensitive leaves the machine |
 
+## Main workflow
+
+<!--svg:pipeline-->
+
+```mermaid
+flowchart LR
+  A[Scan] --> B[Redact and quarantine] --> C[Capsule] --> D[Human review] --> E[Render] --> F[Verify]
+```
+
+## Capsule states
+
+<!--svg:lifecycle-->
+
+```mermaid
+stateDiagram-v2
+  CURRENT --> STALE: document changes
+  CURRENT --> INVALID: capsule edited
+  STALE --> CURRENT: rescan
+  INVALID --> CURRENT: rescan
+```
+
 ## Functional requirements
 
 | ID | Requirement | Command | Status |

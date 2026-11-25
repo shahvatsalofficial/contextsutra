@@ -85,7 +85,7 @@ npx contextsutra install --root . --host claude   # claude | cursor | codex | ge
 
 ## Documentation
 
-Live site: https://shahvatsalofficial.github.io/contextsutra/
+**Documentation website:** https://shahvatsalofficial.github.io/contextsutra/ with diagrams, [real-world scenarios](documents/contextsutra/15-real-world-scenarios.md), search and light or dark theme.
 
 Architecture, functional spec, executive summary, user guide, security and legal, testing, audit, CI/CD, FAQ, contributor handbook, roadmap and ADRs: [documents/contextsutra](documents/contextsutra/README.md) (Markdown and HTML).
 

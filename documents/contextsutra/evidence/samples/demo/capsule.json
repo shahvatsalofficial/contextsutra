@@ -2,7 +2,7 @@
   "schema": "contextsutra.capsule.v1",
   "tool": {
     "name": "contextsutra",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   "project": {
     "name": "demo-repo",
@@ -288,7 +288,7 @@
   "integrity": {
     "algorithm": "sha256",
     "canonicalization": "sorted-keys-json",
-    "digest": "b795ca65097d4ca366cb2d51b565a29322d207d0c764e8129b0842a883b9549b",
+    "digest": "7809bd63eb6185a7bb4b1ac076e6df23334d823b99027fc5d5e56b011c44a103",
     "signed": false
   }
 }

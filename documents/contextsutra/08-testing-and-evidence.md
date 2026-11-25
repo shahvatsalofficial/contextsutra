@@ -1,5 +1,7 @@
 # 08. Testing and evidence
 
+<!--chart:tests-->
+
 ## What is tested
 
 The suite uses Node's built-in test runner (`npm test`). It has two files: `tests/core.test.mjs` (capsule, redaction, freshness, install, server, CLI basics) and `tests/v2.test.mjs` (injection quarantine, budgets, decisions, tasks, conflicts, review gate, reports, server host guard, new CLI commands, argument errors, skill drift, self-audit).

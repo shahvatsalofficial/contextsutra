@@ -5,6 +5,8 @@ on:
     paths:
       - 'documents/**'
       - 'scripts/build-site.mjs'
+      - 'scripts/build-docs.mjs'
+      - 'package.json'
       - 'packages/reporters/**'
       - 'llms.txt'
       - 'compatibility-matrix.json'

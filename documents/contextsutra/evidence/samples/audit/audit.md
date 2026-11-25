@@ -1,7 +1,7 @@
 # ContextSutra self-audit report
 
 **Verdict: PASS** — 47/47 checks passed, 0 failed.  
-Tool: `contextsutra@0.2.0` · Node v24.15.0 · win32
+Tool: `contextsutra@0.2.1` · Node v24.15.0 · win32
 
 > Self-audit of the ContextSutra package: redaction, injection quarantine, integrity, drift, server, supply chain, skills and legal files. It audits the tool, not your repository.
 
@@ -55,7 +55,7 @@ Tool: `contextsutra@0.2.0` · Node v24.15.0 · win32
 | V3 | Server | Non-GET methods are refused | 405 | 405 | PASS |
 | V4 | Server | Foreign Host header is refused (DNS-rebinding guard) | 403 | 403 | PASS |
 | V5 | Server | Short tokens are rejected at start-up | rejected | rejected | PASS |
-| S1 | Supply chain | Secret scan over 106 text files (code only; docs and fixtures excluded) | 0 files | 0 | PASS |
+| S1 | Supply chain | Secret scan over 156 text files (code only; docs and fixtures excluded) | 0 files | 0 | PASS |
 | S2 | Supply chain | No outbound-network, process-spawn or dynamic-code APIs in 8 source files | 0 hits | 0 | PASS |
 | S3 | Supply chain | Only the loopback server touches node:http; no client requests in product code | 0 client calls | 0 | PASS |
 | S4 | Supply chain | Zero runtime dependencies | 0 | 0 | PASS |

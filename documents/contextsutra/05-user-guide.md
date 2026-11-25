@@ -10,6 +10,12 @@ Open `contextsutra-demo/report.html` in a browser. You have just scanned the bun
 
 ## Use it on your own project
 
+<!--flow:daily-->
+1. **Scan** capture the project facts.
+2. **Review** pass the privacy gate and read the capsule. {warn}
+3. **Render** create the hand-off for your assistant.
+4. **Verify** check freshness before you rely on it again. {ok}
+
 ```bash
 cd your-project
 npx contextsutra scan --root . --out .contextsutra/capsule.json

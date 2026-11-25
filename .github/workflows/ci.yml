@@ -26,6 +26,7 @@ jobs:
       - run: npm run doctor
       - run: node packages/cli/index.mjs audit --out artifacts/audit
       - run: node scripts/build-docs.mjs --check
+      - run: node scripts/build-site.mjs
       - uses: actions/upload-artifact@v7
         if: matrix.node == '24'
         with:

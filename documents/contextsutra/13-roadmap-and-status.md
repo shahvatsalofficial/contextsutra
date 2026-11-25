@@ -1,6 +1,6 @@
 # 13. Roadmap and status
 
-## Implementation matrix (v0.2.0)
+## Implementation matrix (v0.2.1)
 
 | Feature | Implemented | Tested | Where | Limitation |
 |---|---|---|---|---|

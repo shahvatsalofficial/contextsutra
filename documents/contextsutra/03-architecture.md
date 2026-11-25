@@ -2,20 +2,25 @@
 
 ## System context
 
-```text
- Developer ──► contextsutra CLI ──reads──► approved repository root (docs, ADRs, manifests)
-                    │
-                    ├─writes──► capsule.json, handoff.md, report.md/html, audit.*
-                    │
-                    └─copies──► .claude/skills, .cursor/skills, .agents/skills, ...   (skills only)
+<!--svg:trust-->
 
- Host IDE / assistant  ◄── user attaches handoff.md or invokes a skill with the host's own method
- Optional: loopback HTTP server (127.0.0.1) serves one capsule with a bearer token
+```mermaid
+flowchart LR
+  R[Untrusted repository text] --> C[ContextSutra, offline] --> O[Files you choose] --> H[Human decides who receives them]
 ```
 
 Trust boundaries: everything read from the repository is untrusted data. The CLI never talks to a model, never calls the network, and never executes repository code.
 
 ## Containers and modules
+
+<!--svg:arch-->
+
+```mermaid
+flowchart TD
+  CLI --> capsule & analyze & reporters & audit & server
+  capsule --> guards
+  analyze --> guards
+```
 
 | Module | File | Responsibility | Side effects |
 |---|---|---|---|
@@ -31,22 +36,15 @@ Pure logic is separated from I/O so each part can be tested alone.
 
 ## Data flow: scan to hand-off
 
+<!--svg:redaction-->
+
 ```mermaid
-flowchart LR
-  A[Repository root] --> B[discover: skip secrets, symlinks, big files]
-  B --> C[select documents]
-  C --> D[extract line by line]
-  D --> E{secret?}
-  E -- yes --> F[redact, count]
-  D --> G{instruction-like?}
-  G -- yes --> H[quarantine line number]
-  D --> I[headings, tasks, status, excerpts]
-  F --> J[capsule + sha256 digest]
-  H --> J
-  I --> J
-  J --> K[review gate]
-  K --> L[render / report]
-  J --> M[verify against live repo]
+flowchart TD
+  A[Allowed document line] --> S{Secret?}
+  S -->|yes| R[Redact]
+  S -->|no| I{Instruction-like?}
+  I -->|yes| Q[Quarantine]
+  I -->|no| C[Capture with line number]
 ```
 
 ## Capsule schema (v1)

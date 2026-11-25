@@ -10,6 +10,13 @@ AI coding assistants are only as good as the project context they receive. Teams
 
 ## What ContextSutra does
 
+<!--svg:pipeline-->
+
+```mermaid
+flowchart LR
+  A[Scan] --> B[Redact and quarantine] --> C[Capsule] --> D[Human review] --> E[Render] --> F[Verify]
+```
+
 ContextSutra is a small command-line tool plus 12 portable agent skills. It runs on your machine, needs no API key and makes no network calls. It:
 
 - **Scans** a repository into a *context capsule*: a JSON file listing the documents it captured, each with a SHA-256 hash, line references and a trust label.
@@ -33,6 +40,16 @@ ContextSutra is a small command-line tool plus 12 portable agent skills. It runs
 
 Not a security product, not a compliance certificate, not a model, not a memory scraper. Redaction is regex best effort. The integrity digest is a checksum, not a digital signature. Host activation (whether Cursor or Claude Code actually loads a skill) is **untested** and recorded as such in [compatibility-matrix.json](../../compatibility-matrix.json).
 
+## Before and after
+
+| Question | Pasting files into a chat | With ContextSutra |
+|---|---|---|
+| What did the assistant see? | Unknown | A file list with hashes and line numbers |
+| Is it still true? | Hope so | `verify` says current or stale |
+| Could a secret leak? | Easily | Secret files skipped, lines redacted, review gate |
+| Can a document steer the model? | Yes | Known instruction phrases quarantined |
+| Who approved a decision? | Guesswork | Approved only if the source says so |
+
 ## Status
 
-Version 0.2.0. Working CLI, 12 distinct skills, self-audit, documentation and evidence. See [Roadmap and status](13-roadmap-and-status.md) for what is planned and what is deliberately out of scope.
+Version 0.2.1. Working CLI, 12 distinct skills, self-audit, documentation and evidence. See [Roadmap and status](13-roadmap-and-status.md) for what is planned and what is deliberately out of scope.

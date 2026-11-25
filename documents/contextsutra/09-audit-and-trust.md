@@ -17,6 +17,8 @@
 | Skills | 12 present, valid, complete, distinct, and calling only real commands |
 | Legal | License, notices and community files present; no forbidden marketing claims |
 
+<!--chart:audit-->
+
 ## Reading the report
 
 Open `audit.html`. Each category card shows passed over total. The table lists every check. Status is text plus a symbol, never colour alone. A failing check includes evidence text naming what failed.

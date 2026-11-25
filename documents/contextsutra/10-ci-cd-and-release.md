@@ -1,5 +1,16 @@
 # 10. CI/CD and release
 
+## Context freshness gate
+
+<!--svg:ci-->
+
+```mermaid
+flowchart LR
+  P[Pull request] --> V[verify] --> Q{Stale?}
+  Q -->|no| M[Merge]
+  Q -->|yes| B[Block and rescan]
+```
+
 ## Continuous integration
 
 `.github/workflows/ci.yml` runs on every push and pull request across Ubuntu and Windows with Node 20, 22 and 24, and macOS with Node 24 (7 jobs; macOS runs Node 24 only). Each job runs:

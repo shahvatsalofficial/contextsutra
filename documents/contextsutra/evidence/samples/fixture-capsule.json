@@ -2,7 +2,7 @@
   "schema": "contextsutra.capsule.v1",
   "tool": {
     "name": "contextsutra",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   "project": {
     "name": ".fixture-tmp",
@@ -85,7 +85,7 @@
   "integrity": {
     "algorithm": "sha256",
     "canonicalization": "sorted-keys-json",
-    "digest": "77935008ef54e86e2314a403490d1e30fb4f21ca9130da92fe5606209d9ec65a",
+    "digest": "df40b8e50420c1eb46068a3fd275cb19108f80d6756678fa507bfe49295f19f6",
     "signed": false
   }
 }

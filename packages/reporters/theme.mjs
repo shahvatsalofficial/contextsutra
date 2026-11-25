@@ -3,7 +3,8 @@ export const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<':
 // One accessible design system shared by reports, audit and docs. Status is always text + symbol, never color alone.
 export const CSS = `
 :root{--bg:#f7f8fb;--surface:#fff;--ink:#14161f;--muted:#566074;--line:#d9deea;--brand:#4b3fd6;--brand-ink:#fff;--ok:#0b6b3a;--ok-bg:#e3f6ea;--bad:#a4161a;--bad-bg:#fde8e8;--warn:#7a4b00;--warn-bg:#fff2d6;--info:#124e8a;--info-bg:#e4f0fc;--code:#eef0f7;--radius:14px;--shadow:0 1px 2px rgba(20,22,31,.06),0 8px 24px rgba(20,22,31,.06)}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1017;--surface:#161a24;--ink:#eceff7;--muted:#9aa4ba;--line:#2a3042;--brand:#8f86ff;--brand-ink:#0e1017;--ok:#6fe0a0;--ok-bg:#12301f;--bad:#ff8d90;--bad-bg:#3a1618;--warn:#ffd27a;--warn-bg:#3a2a0a;--info:#8cc4ff;--info-bg:#10294a;--code:#1d2232;--shadow:none}}
+:root:has(#theme:checked){color-scheme:dark;--bg:#0e1017;--surface:#161a24;--ink:#eceff7;--muted:#9aa4ba;--line:#2a3042;--brand:#8f86ff;--brand-ink:#0e1017;--ok:#6fe0a0;--ok-bg:#12301f;--bad:#ff8d90;--bad-bg:#3a1618;--warn:#ffd27a;--warn-bg:#3a2a0a;--info:#8cc4ff;--info-bg:#10294a;--code:#1d2232;--shadow:none}
+.theme{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--muted);cursor:pointer}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:var(--brand)}a:hover{text-decoration-thickness:2px}
@@ -43,10 +44,10 @@ export const badge = status => `<span class="badge b-${esc(String(status).toLowe
 export function page({ title, description, body, nav = '', lang = 'en', canonical = '' }) {
   return `<!doctype html>
 <html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(title)}</title><meta name="description" content="${esc(description ?? '')}"><meta name="author" content="Vatsal Shah"><meta name="color-scheme" content="light dark">
+<title>${esc(title)}</title><meta name="description" content="${esc(description ?? '')}"><meta name="author" content="Vatsal Shah"><meta name="color-scheme" content="light">
 ${canonical ? `<link rel="canonical" href="${esc(canonical)}">` : ''}<meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description ?? '')}"><meta property="og:type" content="website">
 <style>${CSS}</style></head><body><a class="skip" href="#main">Skip to content</a>
-<header class="site"><div><strong>ContextSutra AI</strong>${nav}</div></header>
+<header class="site"><div><strong>ContextSutra AI</strong>${nav}<label class="theme" style="margin-left:auto"><input type="checkbox" id="theme"> Dark theme</label></div></header>
 <main id="main">${body}</main>
 <footer>ContextSutra AI · Created by Vatsal Shah · Apache-2.0 · Generated offline; no scripts, no trackers, no network calls.</footer></body></html>
 `;

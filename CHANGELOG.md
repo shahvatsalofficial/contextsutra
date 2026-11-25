@@ -1,10 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Documentation website rebuilt: light theme by default with a dark toggle, search, phone layout, diagrams, flowcharts, charts and a new real-world scenarios page.
+- HTML reports default to light, with a script-free dark toggle.
+- The site build now fails on any broken local link.
+
 ## 0.2.1 — 2026-11-16
 
 ### Changed
 - GitHub Actions upgraded to current majors: `actions/checkout@v7`, `actions/setup-node@v7`, `actions/upload-artifact@v7`.
-- First release published through the automated trusted-publishing workflow.
 
 ## 0.2.0 — 2026-11-10
 

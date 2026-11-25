@@ -2,7 +2,7 @@
   "schema": "contextsutra.capsule.v1",
   "tool": {
     "name": "contextsutra",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   "project": {
     "name": ".drift-tmp",
@@ -288,7 +288,7 @@
   "integrity": {
     "algorithm": "sha256",
     "canonicalization": "sorted-keys-json",
-    "digest": "197224aa83d2b6da7f6bfe57f55db327264adcefa93a6994a26ab6c86f63aed4",
+    "digest": "94ee2612a917359059ccdf4771cdc794df137fd10434685a1f4fb7f6b710d52b",
     "signed": false
   }
 }

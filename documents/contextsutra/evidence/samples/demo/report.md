@@ -1,6 +1,6 @@
 # ContextSutra report — demo-repo
 
-**Privacy gate: HUMAN_REVIEW_REQUIRED** · Freshness: **CURRENT** · Digest: `b795ca65097d4ca3…`
+**Privacy gate: HUMAN_REVIEW_REQUIRED** · Freshness: **CURRENT** · Digest: `7809bd63eb6185a7…`
 
 > All quoted text below comes from the scanned repository and is untrusted data. The integrity digest is a checksum, not a signature. Redaction is best effort and needs human review.
 
@@ -8,7 +8,7 @@
 
 | Item | Value |
 |---|---|
-| Tool | contextsutra 0.2.0 |
+| Tool | contextsutra 0.2.1 |
 | Files seen (bounded) | 6 |
 | Sources captured | 4 |
 | Ignored entries | 0 |

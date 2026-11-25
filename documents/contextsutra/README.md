@@ -18,5 +18,6 @@ Everything needed to understand, use, audit, extend and publish ContextSutra wit
 | 12 | [Contributor handbook](12-contributor-handbook.md) | Contributors |
 | 13 | [Roadmap and status](13-roadmap-and-status.md) | Everyone |
 | 14 | [Architecture decisions](14-architecture-decisions.md) | Architects, maintainers |
+| 15 | [Real-world scenarios](15-real-world-scenarios.md) | Everyone |
 
-Raw proof (test run, sample outputs, self-audit) lives in [evidence/](evidence/README.md). HTML versions of every page are in `html/`; rebuild them with `npm run docs`.
+Raw proof (test run, sample outputs, self-audit) lives in [evidence/](evidence/README.md). The documentation website is in `html/` (light theme by default, dark toggle, search, phone layout); rebuild it with `npm run docs`. Live: https://shahvatsalofficial.github.io/contextsutra/

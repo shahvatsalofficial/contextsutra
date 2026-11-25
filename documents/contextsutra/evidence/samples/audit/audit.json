@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "tool": "contextsutra@0.2.0",
+  "tool": "contextsutra@0.2.1",
   "node": "v24.15.0",
   "platform": "win32",
   "scope": "Self-audit of the ContextSutra package: redaction, injection quarantine, integrity, drift, server, supply chain, skills and legal files. It audits the tool, not your repository.",
@@ -350,7 +350,7 @@
     {
       "category": "Supply chain",
       "id": "S1",
-      "title": "Secret scan over 106 text files (code only; docs and fixtures excluded)",
+      "title": "Secret scan over 156 text files (code only; docs and fixtures excluded)",
       "expected": "0 files",
       "observed": "0",
       "status": "pass",

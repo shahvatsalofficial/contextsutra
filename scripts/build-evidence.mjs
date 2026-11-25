@@ -16,7 +16,7 @@ const cs = (...a) => sh([cli, ...a]);
 rmSync(EV, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
 mkdirSync(S, { recursive: true });
 // Placeholders so any docs link-check inside the test run can resolve its targets.
-for (const f of ['README.md', 'test-run.txt', 'test-summary.json']) writeFileSync(join(EV, f), 'placeholder\n');
+for (const f of ['README.md', 'test-run.txt', 'test-summary.json', 'index.html']) writeFileSync(join(EV, f), 'placeholder\n');
 
 const t = sh(['--test', '--test-reporter=spec']);
 const clean = t.stdout.replace(/\u001b\[[0-9;]*m/g, '');
